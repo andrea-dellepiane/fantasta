@@ -535,9 +535,9 @@ function syncShToggles() {
   const title = qi('sh-add-title');
   const note  = qi('sh-res-note');
   const budlbl= qi('sh-bud-lbl');
-  if (title)  title.textContent  = shReserve ? 'Aggiungi riserva' : 'Aggiungi giocatore';
+  if (title)  title.textContent  = shReserve ? 'Aggiungi alternativa' : 'Aggiungi giocatore';
   if (note)   note.style.display = shReserve ? 'block' : 'none';
-  if (budlbl) budlbl.textContent = shReserve ? 'Budget riserva' : 'Budget massimo';
+  if (budlbl) budlbl.textContent = shReserve ? 'Budget alternativa' : 'Budget massimo';
 }
 
 // ── TOAST ───────────────────────────────────────────
@@ -635,7 +635,7 @@ function renderSubCard(r) {
       <div class="rbadge r${r.role}">${r.role}</div>
       <div class="cinfo">
         <div class="pname">${esc(r.name)}</div>
-        <div class="pmeta"><span class="sub-badge">riserva in campo</span></div>
+        <div class="pmeta"><span class="sub-badge">alternativa in campo</span></div>
       </div>
       <div class="cbud">
         <div class="sub-bud">${r.base}</div>
@@ -778,7 +778,7 @@ function renderMain() {
 
   ${resHTML?`<div class="sec" style="margin-top:24px;margin-bottom:4px">
     <div class="sec-hdr">
-      <div class="sec-title">Riserve</div>
+      <div class="sec-title">Alternative</div>
       <div class="sec-cnt">${S.reserves.length}</div>
     </div>
     ${resHTML}
@@ -795,11 +795,11 @@ function renderMain() {
     <div class="sh-title" id="sh-add-title">Aggiungi giocatore</div>
 
     <div class="tog-row" style="margin-bottom:20px">
-      <div class="tog-lbl">Giocatore di riserva</div>
+      <div class="tog-lbl">Giocatore di alternativa</div>
       <button class="tog" id="sh-tog-res" onclick="togReserve()"></button>
     </div>
     <div class="sh-note" id="sh-res-note" style="display:none">
-      Il budget della riserva non incide sul totale proiettato.<br>
+      Il budget della alternativa non incide sul totale proiettato.<br>
       In campo = sostituisce un obiettivo saltato dello stesso ruolo.
     </div>
 
@@ -920,7 +920,7 @@ function populateTest() {
     const p=S.players.find(x=>x.name===n); if(p) p.skip=true;
   });
 
-  // Riserve (con priorità per ruolo)
+  // Alternative (con priorità per ruolo)
   const reserves = [
     // Portieri: Provedel è saltato → Carnesecchi in campo
     { name:'Carnesecchi',  role:'P', order:0 },
@@ -938,7 +938,7 @@ function populateTest() {
     { name:'Castellanos',  role:'A', order:2 },
   ];
   reserves.forEach(r => {
-    // base budget stimato per le riserve
+    // base budget stimato per le alternative
     const basemap = { Carnesecchi:6, Sommer:5, Coppola:4, Dimarco:8, Tomori:5,
       Adli:5, 'De Ketelaere':8, Retegui:12, Lookman:10, Castellanos:6 };
     S.reserves.push({ id:uid(), name:r.name, role:r.role,
