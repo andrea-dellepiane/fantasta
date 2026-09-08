@@ -315,15 +315,17 @@ function stats() {
 
 // ── REDISTRIBUTION ──────────────────────────────────
 function spread(savings, pool) {
-  if (!pool.length || savings <= 0) return;
+  if (!pool.length || savings === 0) return;
   const tot = pool.reduce((s, p) => s + p.max, 0);
-  const base = tot > 0 ? tot : 1;
+  const base = tot > 0 ? tot : pool.length;
   let rem = savings;
   const adds = pool.map(p => {
-    const a = Math.floor(savings * (tot > 0 ? p.max : 1) / (tot > 0 ? base : pool.length));
+    const w = tot > 0 ? p.max / base : 1 / pool.length;
+    // floor for positive (distribute conservatively), ceil for negative (cut less)
+    const a = savings > 0 ? Math.floor(savings * w) : Math.ceil(savings * w);
     rem -= a; return a;
   });
-  // remainder → highest max
+  // leftover remainder → player with highest max
   const mi = pool.reduce((mi, p, i) => p.max > pool[mi].max ? i : mi, 0);
   adds[mi] += rem;
   pool.forEach((p, i) => { p.max += adds[i]; });
@@ -407,7 +409,7 @@ function openWon(id) {
   shWonId = id;
   const p = S.players.find(x => x.id === id);
   setText('sw-pname', p.name);
-  setText('sw-hint', `max ${p.max} crediti`);
+  setText('sw-hint', `budget max: ${p.max} crediti`);
   qv('sw-price', '');
   showSheet('sh-won');
   setTimeout(() => q('#sw-price').focus(), 350);
@@ -441,8 +443,25 @@ function submitWon() {
   const p = S.players.find(x => x.id === shWonId);
   const price = parseInt(q('#sw-price').value);
   if (!price || price < 1) { toast('Inserisci il prezzo'); return; }
-  if (price > p.max) { toast(`Massimo: ${p.max} crediti`); return; }
   closeSheets(); doWin(shWonId, price);
+}
+
+function updateWonHint() {
+  const p = S.players.find(x => x.id === shWonId);
+  if (!p) return;
+  const price = parseInt(q('#sw-price').value) || 0;
+  const diff = p.max - price;
+  const hint = q('#sw-hint');
+  if (price <= 0) {
+    hint.textContent = `budget max: ${p.max} crediti`;
+    hint.style.color = 'var(--muted)';
+  } else if (diff >= 0) {
+    hint.textContent = `+${diff} cr verranno distribuiti agli altri`;
+    hint.style.color = 'var(--accent)';
+  } else {
+    hint.textContent = `⚠ extra ${Math.abs(diff)} cr verranno scalati agli altri`;
+    hint.style.color = 'var(--danger)';
+  }
 }
 
 function selRole(r) { shRole = r; syncRoles(); }
@@ -671,7 +690,7 @@ function renderMain() {
     <div class="fld">
       <div class="flabel">Prezzo pagato</div>
       <input class="finput big" type="number" inputmode="numeric" id="sw-price"
-        placeholder="0" onkeydown="if(event.key==='Enter')submitWon()">
+        placeholder="0" onkeydown="if(event.key==='Enter')submitWon()" oninput="updateWonHint()">
       <div class="hint" id="sw-hint"></div>
     </div>
     <div class="sh-acts">
