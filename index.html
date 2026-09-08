@@ -678,7 +678,21 @@ function renderMain() {
   const overBudget = st.proj>S.totalBudget;
   const resHTML = renderReserves();
   const incampo = getIncampo();
-  const subCards = incampo.map(renderSubCard).join('');
+  const incampoByRole = {};
+  incampo.forEach(r => { (incampoByRole[r.role] = incampoByRole[r.role]||[]).push(r); });
+
+  // Build objectives grouped by role (P→D→C→A), sub cards inserted in their role
+  const ROLE_ORDER = ['P','D','C','A'];
+  let objHTML = '';
+  for (const role of ROLE_ORDER) {
+    const rp = st.pending.filter(p => p.role === role);
+    const rs = incampoByRole[role] || [];
+    rp.forEach(p => { objHTML += renderCard(p); });
+    rs.forEach(r => { objHTML += renderSubCard(r); });
+  }
+  if (!objHTML) objHTML = `<div class="empty">
+    <div class="empty-ico">🎯</div>
+    <div class="empty-txt">Nessun obiettivo.<br>Usa + per aggiungere giocatori.</div></div>`;
 
   return `
   <header class="hdr">
@@ -726,10 +740,7 @@ function renderMain() {
   <div class="sec">
     <div class="sec-hdr"><div class="sec-title">Obiettivi</div><div class="sec-cnt">${st.pending.length}</div></div>
     <div class="cards">
-      ${st.pending.length?st.pending.map(renderCard).join(''):`<div class="empty">
-        <div class="empty-ico">🎯</div>
-        <div class="empty-txt">Nessun obiettivo.<br>Usa + per aggiungere giocatori.</div></div>`}
-      ${subCards}
+      ${objHTML}
     </div>
   </div>
 
