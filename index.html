@@ -8,7 +8,6 @@
   --border: #2a3547;
   --border-sub: #1a2233;
   --accent: #10d981;
-  --accent-dim: rgba(16,217,129,.12);
   --text: #f1f5f9;
   --text-2: #94a3b8;
   --muted: #64748b;
@@ -57,25 +56,14 @@ body{
 .ico-btn:active{opacity:.7}
 
 /* ── BUDGET STRIP ── */
-.bstrip{
-  display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;
-  background:var(--border);border-bottom:1px solid var(--border);
-}
+.bstrip{display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;background:var(--border);border-bottom:1px solid var(--border)}
 .bstrip-div{background:var(--border)}
-.bcell{
-  background:var(--surface);padding:12px 14px;
-  display:flex;flex-direction:column;gap:2px;
-}
+.bcell{background:var(--surface);padding:12px 14px;display:flex;flex-direction:column;gap:2px}
 .bcell-c{align-items:center;text-align:center}
 .bcell-r{align-items:flex-end;text-align:right}
 .blabel{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-.bval{
-  font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700;
-  line-height:1;font-variant-numeric:tabular-nums;color:var(--text)
-}
-.bval.acc{color:var(--accent)}
-.bval.wrn{color:var(--warn)}
-.bval.dng{color:var(--danger)}
+.bval{font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;color:var(--text)}
+.bval.acc{color:var(--accent)}.bval.wrn{color:var(--warn)}.bval.dng{color:var(--danger)}
 .bsub{font-size:11px;color:var(--text-2);font-variant-numeric:tabular-nums}
 
 /* ── PROGRESS BAR ── */
@@ -85,43 +73,25 @@ body{
 .pbar-proj{background:rgba(16,217,129,.22);transition:width .4s ease}
 .pbar-row{display:flex;justify-content:space-between;align-items:center;margin-top:7px}
 .pbar-info{font-size:11px;color:var(--text-2)}
-.sdge{
-  font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;
-  padding:2px 10px;border-radius:20px;letter-spacing:.02em
-}
+.sdge{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;padding:2px 10px;border-radius:20px;letter-spacing:.02em}
 .sdge.pos{background:rgba(16,217,129,.14);color:var(--accent)}
 .sdge.neg{background:rgba(244,63,94,.14);color:var(--danger)}
 .sdge.neu{background:var(--elevated);color:var(--muted)}
-.bwarn{
-  margin:6px 16px 0;padding:8px 12px;border-radius:var(--r-sm);
-  background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);
-  font-size:12px;color:var(--warn);font-weight:500;
-}
+.bwarn{margin:6px 16px 0;padding:8px 12px;border-radius:var(--r-sm);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);font-size:12px;color:var(--warn);font-weight:500}
 
 /* ── SECTIONS ── */
 .sec{padding:0 16px;margin-top:18px}
 .sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
-.sec-cnt{
-  font-size:11px;color:var(--muted);background:var(--elevated);
-  padding:2px 8px;border-radius:10px;font-variant-numeric:tabular-nums
-}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.sec-cnt{font-size:11px;color:var(--muted);background:var(--elevated);padding:2px 8px;border-radius:10px;font-variant-numeric:tabular-nums}
 .cards{display:flex;flex-direction:column;gap:8px}
 
 /* ── PLAYER CARD ── */
-.pcard{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:var(--r);overflow:hidden;transition:border-color .15s;
-}
+.pcard{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:border-color .15s}
 .pcard.won{border-color:rgba(16,217,129,.35);background:linear-gradient(135deg,var(--surface) 0%,rgba(16,217,129,.03) 100%)}
 .pcard.skipped{opacity:.5}
 .card-row{padding:12px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;-webkit-user-select:none;user-select:none}
-.rbadge{
-  width:28px;height:28px;border-radius:6px;display:flex;align-items:center;
-  justify-content:center;font-family:'Barlow Condensed',sans-serif;
-  font-size:13px;font-weight:800;flex-shrink:0;
-}
+.rbadge{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;flex-shrink:0}
 .rP{background:rgba(245,158,11,.15);color:var(--rP)}
 .rD{background:rgba(59,130,246,.15);color:var(--rD)}
 .rC{background:rgba(168,85,247,.15);color:var(--rC)}
@@ -132,16 +102,11 @@ body{
 .pmeta{display:flex;align-items:center;gap:5px;margin-top:1px}
 .pmeta-tag{font-size:11px;color:var(--muted)}
 .pmeta-up{font-size:11px;color:var(--accent)}
-.skipped-tag{
-  font-size:10px;background:var(--elevated);color:var(--muted);
-  padding:1px 6px;border-radius:4px;font-weight:600;text-transform:uppercase;letter-spacing:.06em
-}
+.skipped-tag{font-size:10px;background:var(--elevated);color:var(--muted);padding:1px 6px;border-radius:4px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
 .cbud{text-align:right;flex-shrink:0}
-.bmax{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;
-  line-height:1;font-variant-numeric:tabular-nums;color:var(--text)}
+.bmax{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;color:var(--text)}
 .bmax.up{color:var(--accent)}.bmax.down{color:var(--warn)}
-.bwon-val{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;
-  line-height:1;font-variant-numeric:tabular-nums;color:var(--accent)}
+.bwon-val{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;color:var(--accent)}
 .bsaved{font-size:11px;color:var(--accent);margin-top:1px}
 .blbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
 .blbl-base{font-size:10px;color:var(--muted)}
@@ -149,137 +114,97 @@ body{
 /* Card actions */
 .cacts{display:none;flex-direction:row;gap:7px;padding:10px 14px;border-top:1px solid var(--border-sub)}
 .cacts.open{display:flex}
-.btn{
-  flex:1;height:42px;border-radius:var(--r-sm);border:none;
-  font-family:'Inter',sans-serif;font-size:13px;font-weight:600;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;
-  transition:opacity .15s;white-space:nowrap;
-}
+.btn{flex:1;height:42px;border-radius:var(--r-sm);border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:opacity .15s;white-space:nowrap}
 .btn:active{opacity:.75}
 .btn-pri{background:var(--accent);color:#000}
 .btn-sec{background:var(--elevated);color:var(--text-2);border:1px solid var(--border)}
 .btn-dng{background:rgba(244,63,94,.1);color:var(--danger);border:1px solid rgba(244,63,94,.2)}
 .btn-sq{flex:0;width:42px;padding:0}
 
-/* ── FAB ── */
-.fab{
-  position:fixed;bottom:calc(22px + env(safe-area-inset-bottom));right:18px;z-index:200;
-  width:58px;height:58px;border-radius:29px;background:var(--accent);color:#000;border:none;
-  font-size:26px;font-weight:400;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 24px rgba(16,217,129,.45);transition:transform .15s;
+/* ── RESERVE CARDS ── */
+.res-role-group{margin-bottom:10px}
+.res-role-label{
+  font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--muted);
+  padding:0 2px;margin-bottom:6px;display:flex;align-items:center;gap:8px;
 }
+.res-role-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.rcard{
+  background:var(--elevated);border:1.5px dashed var(--border);
+  border-radius:var(--r-sm);display:flex;align-items:center;gap:0;
+  overflow:hidden;touch-action:none;
+}
+.rcard.incampo{border-color:var(--accent);border-style:solid;background:rgba(16,217,129,.05)}
+.rcard.dragging{opacity:.35;border-style:dashed}
+.rcard.drag-over-top{box-shadow:0 -2px 0 var(--accent)}
+.rcard.drag-over-bot{box-shadow:0 2px 0 var(--accent)}
+.drag-handle{
+  width:36px;height:44px;display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:14px;cursor:grab;flex-shrink:0;touch-action:none;
+  -webkit-user-select:none;user-select:none;
+}
+.drag-handle:active{cursor:grabbing;color:var(--text-2)}
+.rcard-badge{width:24px;height:24px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;flex-shrink:0}
+.rcard-info{flex:1;min-width:0;padding:10px 8px}
+.rcard-name{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.rcard-sub{display:flex;align-items:center;gap:6px;margin-top:1px}
+.rcard-bud{font-family:'Barlow Condensed',sans-serif;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.incampo-pill{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:rgba(16,217,129,.2);color:var(--accent);padding:1px 5px;border-radius:3px}
+.panchina-pill{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--border);color:var(--muted);padding:1px 5px;border-radius:3px}
+.rcard-del{width:40px;height:44px;display:flex;align-items:center;justify-content:center;border:none;background:none;color:var(--muted);font-size:15px;cursor:pointer;flex-shrink:0}
+.rcard-del:active{color:var(--danger)}
+.res-empty{padding:16px;text-align:center;font-size:12px;color:var(--muted);border:1.5px dashed var(--border);border-radius:var(--r-sm)}
+
+/* ── FAB ── */
+.fab{position:fixed;bottom:calc(22px + env(safe-area-inset-bottom));right:18px;z-index:200;width:58px;height:58px;border-radius:29px;background:var(--accent);color:#000;border:none;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(16,217,129,.45);transition:transform .15s}
 .fab:active{transform:scale(.91)}
 
 /* ── BOTTOM SHEET ── */
-.overlay{
-  display:none;position:fixed;inset:0;z-index:300;
-  background:rgba(0,0,0,.65);backdrop-filter:blur(4px);
-}
+.overlay{display:none;position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.65);backdrop-filter:blur(4px)}
 .overlay.open{display:block}
-.sheet{
-  position:fixed;bottom:0;left:0;right:0;z-index:301;
-  background:var(--surface);border-radius:20px 20px 0 0;border-top:1px solid var(--border);
-  padding:0 20px calc(20px + env(safe-area-inset-bottom));
-  transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);
-  max-height:92dvh;overflow-y:auto;
-}
+.sheet{position:fixed;bottom:0;left:0;right:0;z-index:301;background:var(--surface);border-radius:20px 20px 0 0;border-top:1px solid var(--border);padding:0 20px calc(20px + env(safe-area-inset-bottom));transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);max-height:92dvh;overflow-y:auto}
 .sheet.open{transform:translateY(0)}
 .sh-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:14px auto 20px}
-.sh-title{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;
-  text-transform:uppercase;letter-spacing:.04em;margin-bottom:20px;color:var(--text)}
+.sh-title{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:20px;color:var(--text)}
 .fld{margin-bottom:16px}
-.flabel{display:block;font-size:11px;font-weight:600;text-transform:uppercase;
-  letter-spacing:.09em;color:var(--muted);margin-bottom:6px}
-.finput{
-  width:100%;height:50px;background:var(--elevated);border:1.5px solid var(--border);
-  border-radius:var(--r-sm);color:var(--text);font-family:'Inter',sans-serif;
-  font-size:16px;padding:0 14px;outline:none;transition:border-color .15s;
-  -webkit-appearance:none;appearance:none;
-}
+.flabel{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:6px}
+.finput{width:100%;height:50px;background:var(--elevated);border:1.5px solid var(--border);border-radius:var(--r-sm);color:var(--text);font-family:'Inter',sans-serif;font-size:16px;padding:0 14px;outline:none;transition:border-color .15s;-webkit-appearance:none;appearance:none}
 .finput:focus{border-color:var(--accent)}
-.finput.big{
-  font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:700;
-  text-align:center;height:72px;font-variant-numeric:tabular-nums;
-}
+.finput.big{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:700;text-align:center;height:72px;font-variant-numeric:tabular-nums}
 .hint{text-align:center;margin-top:6px;font-size:12px;color:var(--muted)}
 .role-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-.rbtn{
-  height:46px;border-radius:var(--r-sm);border:2px solid var(--border);
-  background:var(--elevated);color:var(--text-2);
-  font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;
-  cursor:pointer;transition:.15s;
-}
+.rbtn{height:46px;border-radius:var(--r-sm);border:2px solid var(--border);background:var(--elevated);color:var(--text-2);font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;cursor:pointer;transition:.15s}
 .rbtn.sel-P{border-color:var(--rP);background:rgba(245,158,11,.1);color:var(--rP)}
 .rbtn.sel-D{border-color:var(--rD);background:rgba(59,130,246,.1);color:var(--rD)}
 .rbtn.sel-C{border-color:var(--rC);background:rgba(168,85,247,.1);color:var(--rC)}
 .rbtn.sel-A{border-color:var(--rA);background:rgba(244,63,94,.1);color:var(--rA)}
-.tog-row{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:13px 0;border-bottom:1px solid var(--border-sub);margin-bottom:16px;
-}
+.tog-row{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--border-sub);margin-bottom:16px}
 .tog-lbl{font-size:14px;font-weight:500;color:var(--text)}
-.tog{
-  width:46px;height:26px;border-radius:13px;background:var(--border);
-  position:relative;cursor:pointer;transition:background .2s;border:none;padding:0;flex-shrink:0;
-}
+.tog{width:46px;height:26px;border-radius:13px;background:var(--border);position:relative;cursor:pointer;transition:background .2s;border:none;padding:0;flex-shrink:0}
 .tog.on{background:var(--accent)}
-.tog::after{
-  content:'';position:absolute;width:20px;height:20px;border-radius:10px;
-  background:#fff;top:3px;left:3px;transition:transform .2s;
-  box-shadow:0 1px 4px rgba(0,0,0,.35);
-}
+.tog::after{content:'';position:absolute;width:20px;height:20px;border-radius:10px;background:#fff;top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.35)}
 .tog.on::after{transform:translateX(20px)}
 .sh-acts{display:flex;gap:10px;margin-top:20px}
+.sh-note{font-size:11px;color:var(--muted);margin-top:-8px;margin-bottom:12px;line-height:1.5}
 
 /* ── SETUP ── */
-.setup{
-  min-height:100dvh;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:32px 24px;text-align:center;
-}
-.setup-logo{
-  font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:800;
-  text-transform:uppercase;letter-spacing:.04em;line-height:.9;margin-bottom:10px;
-}
+.setup{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 24px;text-align:center}
+.setup-logo{font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;line-height:.9;margin-bottom:10px}
 .setup-logo em{color:var(--accent);font-style:normal}
 .setup-sub{font-size:14px;color:var(--text-2);margin-bottom:48px}
-.setup-lbl{
-  font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;
-  color:var(--muted);margin-bottom:8px;text-align:left;width:100%;max-width:320px
-}
-.setup-in{
-  width:100%;max-width:320px;height:70px;background:var(--surface);
-  border:2px solid var(--border);border-radius:var(--r);color:var(--text);
-  font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:700;
-  text-align:center;outline:none;transition:border-color .15s;
-  -webkit-appearance:none;font-variant-numeric:tabular-nums;
-}
+.setup-lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:8px;text-align:left;width:100%;max-width:320px}
+.setup-in{width:100%;max-width:320px;height:70px;background:var(--surface);border:2px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:700;text-align:center;outline:none;transition:border-color .15s;-webkit-appearance:none;font-variant-numeric:tabular-nums}
 .setup-in:focus{border-color:var(--accent)}
-.setup-btn{
-  margin-top:24px;width:100%;max-width:320px;height:58px;border-radius:var(--r);
-  background:var(--accent);color:#000;border:none;
-  font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;
-  text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:opacity .15s;
-}
+.setup-btn{margin-top:24px;width:100%;max-width:320px;height:58px;border-radius:var(--r);background:var(--accent);color:#000;border:none;font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:opacity .15s}
 .setup-btn:active{opacity:.85}
 .setup-note{margin-top:16px;font-size:12px;color:var(--muted);max-width:280px}
 
-/* ── EMPTY STATE ── */
+/* ── MISC ── */
 .empty{text-align:center;padding:44px 20px;color:var(--muted)}
 .empty-ico{font-size:44px;margin-bottom:12px;opacity:.35}
 .empty-txt{font-size:13px;line-height:1.6}
-
-/* ── SPACER ── */
 .spacer{height:calc(88px + env(safe-area-inset-bottom))}
-
-/* ── TOAST ── */
-.toast{
-  position:fixed;bottom:calc(84px + env(safe-area-inset-bottom));left:50%;
-  transform:translateX(-50%) translateY(12px);
-  background:var(--elevated);border:1px solid var(--border);color:var(--text);
-  padding:9px 18px;border-radius:20px;font-size:13px;font-weight:500;
-  opacity:0;transition:opacity .22s,transform .22s;pointer-events:none;
-  white-space:nowrap;z-index:500;max-width:calc(100vw - 40px);text-align:center;
-}
+.toast{position:fixed;bottom:calc(84px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%) translateY(12px);background:var(--elevated);border:1px solid var(--border);color:var(--text);padding:9px 18px;border-radius:20px;font-size:13px;font-weight:500;opacity:0;transition:opacity .22s,transform .22s;pointer-events:none;white-space:nowrap;z-index:500;max-width:calc(100vw - 40px);text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 @media (prefers-reduced-motion:reduce){
@@ -291,13 +216,17 @@ body{
 <div class="toast" id="toast"></div>
 
 <script>
-const KEY = 'fantaasta-v3';
+const KEY = 'fantaasta-v4';
 
-let S = { totalBudget: 250, ready: false, players: [], xId: null };
+let S = { totalBudget:250, ready:false, players:[], reserves:[], xId:null };
 
 // ── PERSIST ─────────────────────────────────────────
 function load() {
-  try { const d = localStorage.getItem(KEY); if (d) S = Object.assign(S, JSON.parse(d)); } catch {}
+  try {
+    const d = localStorage.getItem(KEY);
+    if (d) S = Object.assign(S, JSON.parse(d));
+    if (!S.reserves) S.reserves = [];
+  } catch {}
 }
 function save() { localStorage.setItem(KEY, JSON.stringify(S)); }
 
@@ -321,11 +250,9 @@ function spread(savings, pool) {
   let rem = savings;
   const adds = pool.map(p => {
     const w = tot > 0 ? p.max / base : 1 / pool.length;
-    // floor for positive (distribute conservatively), ceil for negative (cut less)
     const a = savings > 0 ? Math.floor(savings * w) : Math.ceil(savings * w);
     rem -= a; return a;
   });
-  // leftover remainder → player with highest max
   const mi = pool.reduce((mi, p, i) => p.max > pool[mi].max ? i : mi, 0);
   adds[mi] += rem;
   pool.forEach((p, i) => { p.max += adds[i]; });
@@ -338,18 +265,15 @@ function recalc() {
   const done = new Set();
   for (const wp of wonSorted) {
     const savings = wp.max - wp.won;
-    wp.max = wp.won;
-    done.add(wp.id);
-    if (savings > 0) {
+    wp.max = wp.won; done.add(wp.id);
+    if (savings !== 0)
       spread(savings, S.players.filter(p => !done.has(p.id) && !p.skip && p.won === null));
-    }
   }
 }
 
-// ── ACTIONS ─────────────────────────────────────────
+// ── PLAYER ACTIONS ──────────────────────────────────
 function addPlayer(name, role, maxB, wonP) {
-  const p = { id: Date.now() + Math.random().toString(36).slice(2),
-    name: name.trim(), role, base: maxB, max: maxB, won: null, wonAt: null, skip: false };
+  const p = { id: uid(), name:name.trim(), role, base:maxB, max:maxB, won:null, wonAt:null, skip:false };
   S.players.push(p);
   if (wonP != null) doWin(p.id, wonP, false);
   else { save(); render(); }
@@ -359,65 +283,161 @@ function doWin(id, price, saveRender = true) {
   const p = S.players.find(x => x.id === id);
   if (!p) return;
   const savings = p.max - price;
-  p.won = price; p.max = price; p.wonAt = Date.now();
-  S.xId = null;
-  if (savings > 0) {
+  p.won = price; p.max = price; p.wonAt = Date.now(); S.xId = null;
+  if (savings !== 0) {
     const pool = S.players.filter(x => x.won === null && !x.skip && x.id !== id);
     spread(savings, pool);
-    if (pool.length) toast(`+${savings} cr distribuiti su ${pool.length} obiettivi`);
+    if (pool.length && savings > 0) toast(`+${savings} cr distribuiti su ${pool.length} obiettivi`);
+    if (savings < 0) toast(`${savings} cr scalati su ${pool.length} obiettivi`);
   }
   if (saveRender) { save(); render(); }
 }
 
-function doSkip(id) {
-  const p = S.players.find(x => x.id === id);
-  if (p) { p.skip = true; S.xId = null; save(); render(); }
-}
-
-function doUnskip(id) {
-  const p = S.players.find(x => x.id === id);
-  if (p) { p.skip = false; save(); render(); }
-}
+function doSkip(id)   { const p = S.players.find(x=>x.id===id); if(p){p.skip=true;  S.xId=null; save(); render();} }
+function doUnskip(id) { const p = S.players.find(x=>x.id===id); if(p){p.skip=false; save(); render();} }
 
 function undoWin(id) {
-  const p = S.players.find(x => x.id === id);
+  const p = S.players.find(x=>x.id===id);
   if (!p) return;
-  p.won = null; p.wonAt = null; S.xId = null;
-  recalc(); save(); render();
+  p.won=null; p.wonAt=null; S.xId=null; recalc(); save(); render();
 }
 
 function delPlayer(id) {
-  S.players = S.players.filter(x => x.id !== id);
-  if (S.players.some(p => p.won !== null)) recalc();
-  S.xId = null; save(); render();
+  S.players = S.players.filter(x=>x.id!==id);
+  if (S.players.some(p=>p.won!==null)) recalc();
+  S.xId=null; save(); render();
 }
 
-function toggleX(id) { S.xId = S.xId === id ? null : id; render(); }
+function toggleX(id) { S.xId = S.xId===id ? null : id; render(); }
+
+// ── RESERVE ACTIONS ─────────────────────────────────
+function addReserve(name, role, base) {
+  const sameRole = S.reserves.filter(r => r.role === role);
+  const order = sameRole.length ? Math.max(...sameRole.map(r => r.order)) + 1 : 0;
+  S.reserves.push({ id:uid(), name:name.trim(), role, base, order });
+  save(); render();
+}
+
+function delReserve(id) {
+  const r = S.reserves.find(x=>x.id===id);
+  if (!r) return;
+  S.reserves = S.reserves.filter(x=>x.id!==id);
+  // compact order for same role
+  S.reserves.filter(x=>x.role===r.role).sort((a,b)=>a.order-b.order)
+    .forEach((x,i) => { x.order=i; });
+  save(); render();
+}
+
+function moveReserve(id, beforeId) {
+  const r = S.reserves.find(x=>x.id===id);
+  if (!r) return;
+  const group = S.reserves.filter(x=>x.role===r.role).sort((a,b)=>a.order-b.order);
+  const without = group.filter(x=>x.id!==id);
+  let newOrder;
+  if (!beforeId) {
+    newOrder = [...without, r];
+  } else {
+    const idx = without.findIndex(x=>x.id===beforeId);
+    newOrder = [...without.slice(0,idx), r, ...without.slice(idx)];
+  }
+  newOrder.forEach((x,i) => { x.order=i; });
+  save(); render();
+}
+
+// ── DRAG & DROP (pointer events) ────────────────────
+let DG = null;
+
+function onHandlePointerDown(e, id) {
+  e.preventDefault();
+  const card = document.getElementById('rc-' + id);
+  if (!card) return;
+  const rect = card.getBoundingClientRect();
+  const clone = card.cloneNode(true);
+  clone.style.cssText = `position:fixed;left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;
+    z-index:1000;opacity:.9;pointer-events:none;border-radius:var(--r-sm);
+    box-shadow:0 8px 32px rgba(0,0,0,.5);transform:scale(1.03);transition:none;`;
+  document.body.appendChild(clone);
+  card.classList.add('dragging');
+  const r = S.reserves.find(x=>x.id===id);
+  DG = { id, role:r.role, offsetY:e.clientY - rect.top, clone, overCard:null };
+  document.addEventListener('pointermove', onDragMove, {passive:false});
+  document.addEventListener('pointerup',   onDragEnd);
+}
+
+function onDragMove(e) {
+  if (!DG) return;
+  e.preventDefault();
+  DG.clone.style.top = (e.clientY - DG.offsetY) + 'px';
+  // find which card we're over
+  const cards = [...document.querySelectorAll(`.rcard[data-role="${DG.role}"]`)]
+    .filter(c => c.id !== 'rc-' + DG.id);
+  let over = null;
+  for (const c of cards) {
+    const r = c.getBoundingClientRect();
+    if (e.clientY >= r.top && e.clientY <= r.bottom) { over = c; break; }
+  }
+  // visual feedback
+  document.querySelectorAll('.rcard').forEach(c => c.classList.remove('drag-over-top','drag-over-bot'));
+  if (over) {
+    const r = over.getBoundingClientRect();
+    over.classList.add(e.clientY < r.top + r.height/2 ? 'drag-over-top' : 'drag-over-bot');
+    DG.overCard = over;
+  } else {
+    DG.overCard = null;
+  }
+}
+
+function onDragEnd(e) {
+  if (!DG) return;
+  document.removeEventListener('pointermove', onDragMove);
+  document.removeEventListener('pointerup',   onDragEnd);
+  DG.clone.remove();
+  document.querySelectorAll('.rcard').forEach(c => c.classList.remove('dragging','drag-over-top','drag-over-bot'));
+
+  let beforeId = null;
+  if (DG.overCard) {
+    const overId = DG.overCard.dataset.rid;
+    const r = DG.overCard.getBoundingClientRect();
+    if (e.clientY < r.top + r.height/2) {
+      beforeId = overId;
+    } else {
+      // insert after: find the next sibling in the sorted group
+      const group = S.reserves.filter(x=>x.role===DG.role).sort((a,b)=>a.order-b.order);
+      const idx = group.findIndex(x=>x.id===overId);
+      beforeId = idx < group.length - 1 && group[idx+1].id !== DG.id
+        ? group[idx+1].id : null;
+    }
+  }
+  const dragId = DG.id;
+  DG = null;
+  moveReserve(dragId, beforeId);
+}
 
 // ── SHEETS STATE ────────────────────────────────────
-let shRole = 'A', shAlredy = false, shWonId = null;
+let shRole='A', shAlready=false, shReserve=false, shWonId=null;
 
 function openAdd() {
-  shRole = 'A'; shAlredy = false;
-  qv('sh-name', ''); qv('sh-max', ''); qv('sh-wprice', '');
-  syncRoles(); syncTog();
+  shRole='A'; shAlready=false; shReserve=false;
+  qv('sh-name',''); qv('sh-max',''); qv('sh-wprice','');
+  syncRoles(); syncShToggles();
   showSheet('sh-add');
-  setTimeout(() => q('#sh-name').focus(), 350);
+  setTimeout(() => qi('sh-name').focus(), 350);
 }
 
 function openWon(id) {
   shWonId = id;
-  const p = S.players.find(x => x.id === id);
+  const p = S.players.find(x=>x.id===id);
   setText('sw-pname', p.name);
   setText('sw-hint', `budget max: ${p.max} crediti`);
-  qv('sw-price', '');
+  qi('sw-hint').style.color = 'var(--muted)';
+  qv('sw-price','');
   showSheet('sh-won');
-  setTimeout(() => q('#sw-price').focus(), 350);
+  setTimeout(() => qi('sw-price').focus(), 350);
 }
 
 function showSheet(id) {
   q('.overlay').classList.add('open');
-  q('#' + id).classList.add('open');
+  qi(id).classList.add('open');
 }
 
 function closeSheets() {
@@ -426,32 +446,34 @@ function closeSheets() {
 }
 
 function submitAdd() {
-  const name = q('#sh-name').value.trim();
-  const maxB = parseInt(q('#sh-max').value);
+  const name = qi('sh-name').value.trim();
+  const maxB = parseInt(qi('sh-max').value);
   if (!name) { toast('Inserisci il nome'); return; }
-  if (!maxB || maxB < 1) { toast('Inserisci il budget massimo'); return; }
+  if (!maxB || maxB < 1) { toast('Inserisci il budget'); return; }
+  if (shReserve) {
+    closeSheets(); addReserve(name, shRole, maxB); return;
+  }
   let wonP = null;
-  if (shAlredy) {
-    wonP = parseInt(q('#sh-wprice').value);
+  if (shAlready) {
+    wonP = parseInt(qi('sh-wprice').value);
     if (!wonP || wonP < 1) { toast('Inserisci il prezzo pagato'); return; }
-    if (wonP > maxB) { toast(`Prezzo superiore al massimo (${maxB})`); return; }
   }
   closeSheets(); addPlayer(name, shRole, maxB, wonP);
 }
 
 function submitWon() {
-  const p = S.players.find(x => x.id === shWonId);
-  const price = parseInt(q('#sw-price').value);
+  const p = S.players.find(x=>x.id===shWonId);
+  const price = parseInt(qi('sw-price').value);
   if (!price || price < 1) { toast('Inserisci il prezzo'); return; }
   closeSheets(); doWin(shWonId, price);
 }
 
 function updateWonHint() {
-  const p = S.players.find(x => x.id === shWonId);
+  const p = S.players.find(x=>x.id===shWonId);
   if (!p) return;
-  const price = parseInt(q('#sw-price').value) || 0;
+  const price = parseInt(qi('sw-price').value) || 0;
   const diff = p.max - price;
-  const hint = q('#sw-hint');
+  const hint = qi('sw-hint');
   if (price <= 0) {
     hint.textContent = `budget max: ${p.max} crediti`;
     hint.style.color = 'var(--muted)';
@@ -464,35 +486,48 @@ function updateWonHint() {
   }
 }
 
-function selRole(r) { shRole = r; syncRoles(); }
-function togAlready() { shAlredy = !shAlredy; syncTog(); }
+function selRole(r) { shRole=r; syncRoles(); }
+function togAlready()  { shAlready=!shAlready;  syncShToggles(); }
+function togReserve()  { shReserve=!shReserve;  syncShToggles(); }
 
 function syncRoles() {
-  qAll('.rbtn').forEach(b => {
-    b.className = 'rbtn';
-    if (b.dataset.r === shRole) b.classList.add('sel-' + shRole);
-  });
+  qAll('.rbtn').forEach(b => { b.className='rbtn'; if(b.dataset.r===shRole) b.classList.add('sel-'+shRole); });
 }
-function syncTog() {
-  q('#sh-tog').classList.toggle('on', shAlredy);
-  q('#sh-wprow').style.display = shAlredy ? 'block' : 'none';
+function syncShToggles() {
+  const togRes = qi('sh-tog-res');
+  const togAlr = qi('sh-tog-alr');
+  if (togRes) togRes.classList.toggle('on', shReserve);
+  if (togAlr) {
+    qi('sh-alr-row').style.display = shReserve ? 'none' : 'flex';
+    togAlr.classList.toggle('on', shAlready);
+    qi('sh-wprow').style.display = (!shReserve && shAlready) ? 'block' : 'none';
+  }
+  const title = qi('sh-add-title');
+  const note  = qi('sh-res-note');
+  const budlbl= qi('sh-bud-lbl');
+  if (title)  title.textContent  = shReserve ? 'Aggiungi riserva' : 'Aggiungi giocatore';
+  if (note)   note.style.display = shReserve ? 'block' : 'none';
+  if (budlbl) budlbl.textContent = shReserve ? 'Budget riserva' : 'Budget massimo';
 }
 
 // ── TOAST ───────────────────────────────────────────
 let toastTimer;
 function toast(msg) {
-  const el = q('#toast'); el.textContent = msg; el.classList.add('show');
+  const el=qi('toast'); el.textContent=msg; el.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+  toastTimer=setTimeout(()=>el.classList.remove('show'),2800);
 }
 
-// ── RENDER ──────────────────────────────────────────
-function q(s) { return document.querySelector(s); }
-function qAll(s) { return document.querySelectorAll(s); }
-function qv(id, v) { const el = document.getElementById(id); if (el) el.value = v; }
-function setText(id, t) { const el = document.getElementById(id); if (el) el.textContent = t; }
-function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+// ── HELPERS ─────────────────────────────────────────
+function q(s)      { return document.querySelector(s); }
+function qAll(s)   { return document.querySelectorAll(s); }
+function qi(id)    { return document.getElementById(id); }
+function qv(id,v)  { const el=qi(id); if(el) el.value=v; }
+function setText(id,t){ const el=qi(id); if(el) el.textContent=t; }
+function esc(s)    { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function uid()     { return Date.now()+Math.random().toString(36).slice(2); }
 
+// ── RENDER ──────────────────────────────────────────
 function renderSetup() {
   return `<div class="setup">
     <div class="setup-logo">Fanta<em>Asta</em></div>
@@ -506,77 +541,109 @@ function renderSetup() {
 }
 
 function go() {
-  const v = parseInt(document.getElementById('sb').value);
-  if (!v || v < 1) return;
-  S.totalBudget = v; S.ready = true; save(); render();
+  const v=parseInt(qi('sb').value);
+  if (!v||v<1) return;
+  S.totalBudget=v; S.ready=true; save(); render();
 }
 
 function renderCard(p) {
-  const open = S.xId === p.id;
-  const changed = p.max !== p.base && p.won === null;
-  const maxCls = changed ? (p.max > p.base ? 'up' : 'down') : '';
-
+  const open = S.xId===p.id;
+  const changed = p.max!==p.base && p.won===null;
+  const maxCls  = changed ? (p.max>p.base ? 'up' : 'down') : '';
   let budHTML;
-  if (p.won !== null) {
+  if (p.won!==null) {
     const saved = p.base - p.won;
-    budHTML = `<div class="bwon-val">${p.won}</div>
-      <div class="blbl">aggiudicato</div>
-      ${saved > 0 ? `<div class="bsaved">↓${saved} risparmiati</div>` : ''}`;
+    budHTML = `<div class="bwon-val">${p.won}</div><div class="blbl">aggiudicato</div>
+      ${saved>0?`<div class="bsaved">↓${saved} risparmiati</div>`:''}`;
   } else {
     budHTML = `<div class="bmax bc ${maxCls}">${p.max}</div>
-      ${changed
-        ? `<div class="blbl-base">base ${p.base}</div>`
-        : `<div class="blbl">max</div>`}`;
+      ${changed?`<div class="blbl-base">base ${p.base}</div>`:`<div class="blbl">max</div>`}`;
   }
-
-  let metaHTML = '';
-  if (p.skip) metaHTML = `<span class="skipped-tag">saltato</span>`;
-  else if (changed) metaHTML = `<span class="pmeta-tag">base ${p.base}</span><span class="pmeta-up">↑</span>`;
-
-  let actsHTML = '';
-  if (!p.skip && p.won === null) {
-    actsHTML = `<button class="btn btn-pri" onclick="openWon('${p.id}')">⚡ Aggiudicato</button>
+  let metaHTML='';
+  if (p.skip) metaHTML=`<span class="skipped-tag">saltato</span>`;
+  else if (changed) metaHTML=`<span class="pmeta-tag">base ${p.base}</span><span class="pmeta-up">↑</span>`;
+  let actsHTML='';
+  if (!p.skip && p.won===null) {
+    actsHTML=`<button class="btn btn-pri" onclick="openWon('${p.id}')">⚡ Aggiudicato</button>
       <button class="btn btn-sec" onclick="doSkip('${p.id}')">Salta</button>
       <button class="btn btn-dng btn-sq" onclick="delPlayer('${p.id}')">✕</button>`;
-  } else if (p.won !== null) {
-    actsHTML = `<button class="btn btn-sec" onclick="undoWin('${p.id}')">↩ Annulla</button>
+  } else if (p.won!==null) {
+    actsHTML=`<button class="btn btn-sec" onclick="undoWin('${p.id}')">↩ Annulla</button>
       <button class="btn btn-dng btn-sq" onclick="delPlayer('${p.id}')">✕</button>`;
   } else {
-    actsHTML = `<button class="btn btn-sec" onclick="doUnskip('${p.id}')">↩ Ripristina</button>
+    actsHTML=`<button class="btn btn-sec" onclick="doUnskip('${p.id}')">↩ Ripristina</button>
       <button class="btn btn-dng btn-sq" onclick="delPlayer('${p.id}')">✕</button>`;
   }
-
-  return `<div class="pcard ${p.won !== null ? 'won' : ''} ${p.skip ? 'skipped' : ''}">
+  return `<div class="pcard ${p.won!==null?'won':''} ${p.skip?'skipped':''}">
     <div class="card-row" onclick="toggleX('${p.id}')">
       <div class="rbadge r${p.role}">${p.role}</div>
       <div class="cinfo">
-        <div class="pname ${p.won !== null ? 'struck' : ''}">${esc(p.name)}</div>
+        <div class="pname ${p.won!==null?'struck':''}">${esc(p.name)}</div>
         <div class="pmeta">${metaHTML}</div>
       </div>
       <div class="cbud">${budHTML}</div>
     </div>
-    <div class="cacts ${open ? 'open' : ''}">${actsHTML}</div>
+    <div class="cacts ${open?'open':''}">${actsHTML}</div>
   </div>`;
+}
+
+function renderReserves() {
+  if (!S.reserves.length) return '';
+  // count skipped per role
+  const skipCount = {};
+  S.players.filter(p=>p.skip).forEach(p => { skipCount[p.role]=(skipCount[p.role]||0)+1; });
+
+  const roleOrder = ['P','D','C','A'];
+  let html = '';
+  for (const role of roleOrder) {
+    const group = S.reserves.filter(r=>r.role===role).sort((a,b)=>a.order-b.order);
+    if (!group.length) continue;
+    const slots = skipCount[role] || 0;
+    html += `<div class="res-role-group">
+      <div class="res-role-label">${role}</div>
+      <div class="cards" id="rg-${role}">
+        ${group.map((r,i) => {
+          const active = i < slots;
+          const pill = active
+            ? `<span class="incampo-pill">in campo</span>`
+            : `<span class="panchina-pill">panchina</span>`;
+          return `<div class="rcard ${active?'incampo':''}" id="rc-${r.id}" data-role="${role}" data-rid="${r.id}">
+            <div class="drag-handle"
+              onpointerdown="onHandlePointerDown(event,'${r.id}')"
+              style="touch-action:none">≡</div>
+            <div class="rcard-badge r${role}">${role}</div>
+            <div class="rcard-info">
+              <div class="rcard-name">${esc(r.name)}</div>
+              <div class="rcard-sub">
+                <span class="rcard-bud">${r.base} cr</span>
+                ${pill}
+              </div>
+            </div>
+            <button class="rcard-del" onclick="delReserve('${r.id}')">✕</button>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }
+  return html;
 }
 
 function renderMain() {
   const st = stats();
-  const spPct = Math.min(100, st.spent / S.totalBudget * 100);
-  const prPct = Math.min(100, Math.max(0, (st.proj - st.spent) / S.totalBudget * 100));
-  const sdCls = st.sd > 0 ? 'pos' : st.sd < 0 ? 'neg' : 'neu';
-  const sdTxt = st.sd > 0 ? `+${st.sd} surplus` : st.sd < 0 ? `${st.sd} deficit` : 'in pari';
-  const remCls = st.remaining < 20 ? 'dng' : st.remaining < 50 ? 'wrn' : 'acc';
-  const overBudget = st.proj > S.totalBudget;
-
-  const pendCards = st.pending.map(renderCard).join('');
-  const wonCards  = st.won.map(renderCard).join('');
-  const skipCards = st.skipped.map(renderCard).join('');
+  const spPct = Math.min(100, st.spent/S.totalBudget*100);
+  const prPct = Math.min(100, Math.max(0,(st.proj-st.spent)/S.totalBudget*100));
+  const sdCls = st.sd>0?'pos':st.sd<0?'neg':'neu';
+  const sdTxt = st.sd>0?`+${st.sd} surplus`:st.sd<0?`${st.sd} deficit`:'in pari';
+  const remCls= st.remaining<20?'dng':st.remaining<50?'wrn':'acc';
+  const overBudget = st.proj>S.totalBudget;
+  const resHTML = renderReserves();
 
   return `
   <header class="hdr">
     <div class="hdr-title">Fanta<em>Asta</em></div>
     <div class="hdr-right">
-      <button class="ico-btn" onclick="populateTest()" title="Popola dati di test" style="font-size:13px;font-weight:600;width:auto;padding:0 10px;color:var(--accent);border-color:rgba(16,217,129,.3)">TEST</button>
+      <button class="ico-btn" onclick="populateTest()" title="Popola dati di test"
+        style="font-size:13px;font-weight:600;width:auto;padding:0 10px;color:var(--accent);border-color:rgba(16,217,129,.3)">TEST</button>
       <button class="ico-btn" onclick="resetAll()" title="Reset asta">↺</button>
     </div>
   </header>
@@ -604,44 +671,42 @@ function renderMain() {
   <div class="pbar-wrap">
     <div class="pbar-track">
       <div class="pbar-spent" style="width:${spPct}%"></div>
-      <div class="pbar-proj" style="width:${prPct}%"></div>
+      <div class="pbar-proj"  style="width:${prPct}%"></div>
     </div>
     <div class="pbar-row">
-      <div class="pbar-info">${Math.round(spPct + prPct)}% del budget impegnato</div>
+      <div class="pbar-info">${Math.round(spPct+prPct)}% del budget impegnato</div>
       <div class="sdge ${sdCls}">${sdTxt}</div>
     </div>
   </div>
 
-  ${overBudget ? `<div class="bwarn">⚠ Stai sforando il budget di ${st.proj - S.totalBudget} crediti</div>` : ''}
+  ${overBudget?`<div class="bwarn">⚠ Stai sforando il budget di ${st.proj-S.totalBudget} crediti</div>`:''}
 
   <div class="sec">
-    <div class="sec-hdr">
-      <div class="sec-title">Obiettivi</div>
-      <div class="sec-cnt">${st.pending.length}</div>
-    </div>
+    <div class="sec-hdr"><div class="sec-title">Obiettivi</div><div class="sec-cnt">${st.pending.length}</div></div>
     <div class="cards">
-      ${st.pending.length ? pendCards : `<div class="empty">
+      ${st.pending.length?st.pending.map(renderCard).join(''):`<div class="empty">
         <div class="empty-ico">🎯</div>
-        <div class="empty-txt">Nessun obiettivo.<br>Usa + per aggiungere giocatori.</div>
-      </div>`}
+        <div class="empty-txt">Nessun obiettivo.<br>Usa + per aggiungere giocatori.</div></div>`}
     </div>
   </div>
 
-  ${st.won.length ? `<div class="sec" style="margin-top:24px">
-    <div class="sec-hdr">
-      <div class="sec-title">Aggiudicati</div>
-      <div class="sec-cnt">${st.won.length}</div>
-    </div>
-    <div class="cards">${wonCards}</div>
-  </div>` : ''}
+  ${st.won.length?`<div class="sec" style="margin-top:24px">
+    <div class="sec-hdr"><div class="sec-title">Aggiudicati</div><div class="sec-cnt">${st.won.length}</div></div>
+    <div class="cards">${st.won.map(renderCard).join('')}</div>
+  </div>`:''}
 
-  ${st.skipped.length ? `<div class="sec" style="margin-top:16px;margin-bottom:4px">
+  ${st.skipped.length?`<div class="sec" style="margin-top:16px">
+    <div class="sec-hdr"><div class="sec-title" style="color:var(--muted)">Saltati</div><div class="sec-cnt">${st.skipped.length}</div></div>
+    <div class="cards">${st.skipped.map(renderCard).join('')}</div>
+  </div>`:''}
+
+  ${resHTML?`<div class="sec" style="margin-top:24px;margin-bottom:4px">
     <div class="sec-hdr">
-      <div class="sec-title" style="color:var(--muted)">Saltati</div>
-      <div class="sec-cnt">${st.skipped.length}</div>
+      <div class="sec-title">Riserve</div>
+      <div class="sec-cnt">${S.reserves.length}</div>
     </div>
-    <div class="cards">${skipCards}</div>
-  </div>` : ''}
+    ${resHTML}
+  </div>`:''}
 
   <div class="spacer"></div>
   <button class="fab" onclick="openAdd()">+</button>
@@ -651,7 +716,17 @@ function renderMain() {
   <!-- Add sheet -->
   <div class="sheet" id="sh-add" onclick="event.stopPropagation()">
     <div class="sh-handle"></div>
-    <div class="sh-title">Aggiungi giocatore</div>
+    <div class="sh-title" id="sh-add-title">Aggiungi giocatore</div>
+
+    <div class="tog-row" style="margin-bottom:20px">
+      <div class="tog-lbl">Giocatore di riserva</div>
+      <button class="tog" id="sh-tog-res" onclick="togReserve()"></button>
+    </div>
+    <div class="sh-note" id="sh-res-note" style="display:none">
+      Il budget della riserva non incide sul totale proiettato.<br>
+      In campo = sostituisce un obiettivo saltato dello stesso ruolo.
+    </div>
+
     <div class="fld">
       <div class="flabel">Ruolo</div>
       <div class="role-grid">
@@ -664,17 +739,19 @@ function renderMain() {
         autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false">
     </div>
     <div class="fld">
-      <label class="flabel" for="sh-max">Budget massimo</label>
+      <label class="flabel" for="sh-max" id="sh-bud-lbl">Budget massimo</label>
       <input class="finput" type="number" inputmode="numeric" id="sh-max" placeholder="es. 30">
     </div>
-    <div class="tog-row">
+
+    <div class="tog-row" id="sh-alr-row">
       <div class="tog-lbl">Già aggiudicato</div>
-      <button class="tog" id="sh-tog" onclick="togAlready()"></button>
+      <button class="tog" id="sh-tog-alr" onclick="togAlready()"></button>
     </div>
     <div class="fld" id="sh-wprow" style="display:none">
       <label class="flabel" for="sh-wprice">Prezzo pagato</label>
       <input class="finput" type="number" inputmode="numeric" id="sh-wprice" placeholder="es. 25">
     </div>
+
     <div class="sh-acts">
       <button class="btn btn-sec" style="flex:0;min-width:90px" onclick="closeSheets()">Annulla</button>
       <button class="btn btn-pri" onclick="submitAdd()">Aggiungi</button>
@@ -703,12 +780,11 @@ function renderMain() {
 function resetAll() {
   if (!confirm('Resettare tutta l\'asta? I dati verranno eliminati.')) return;
   localStorage.removeItem(KEY);
-  S = { totalBudget: 250, ready: false, players: [], xId: null };
+  S = { totalBudget:250, ready:false, players:[], reserves:[], xId:null };
   render();
 }
 
 function populateTest() {
-  // Rosa completa: 3P 8D 8C 6A = 25 giocatori, budget 250
   const roster = [
     // Portieri
     { name:'Maignan',        role:'P', base:14 },
@@ -740,47 +816,65 @@ function populateTest() {
     { name:'Politano',       role:'A', base:6  },
     { name:'Giroud',         role:'A', base:5  },
   ];
-  // somma base = 327, realistico: non vincerai tutti al massimo
 
-  S.ready = true; S.totalBudget = 250; S.players = []; S.xId = null;
+  S.ready=true; S.totalBudget=250; S.players=[]; S.reserves=[]; S.xId=null;
   roster.forEach(p => {
-    S.players.push({ id: Date.now() + Math.random().toString(36).slice(2),
-      name: p.name, role: p.role, base: p.base, max: p.base,
-      won: null, wonAt: null, skip: false });
+    S.players.push({ id:uid(), name:p.name, role:p.role, base:p.base, max:p.base,
+      won:null, wonAt:null, skip:false });
   });
 
-  // Simula aggiudicazioni sequenziali (con redistribuzione corretta)
+  // Aggiudicazioni sequenziali
   const wins = [
-    { name:'Maignan',        price:11 }, // risparmio 3
-    { name:'Theo Hernandez', price:26 }, // extra 4 → scala agli altri
-    { name:'Calhanoglu',     price:28 }, // risparmio 2
-    { name:'Barella',        price:20 }, // risparmio 2
-    { name:'Lautaro',        price:35 }, // risparmio 3
+    { name:'Maignan',        price:11 },
+    { name:'Theo Hernandez', price:26 },
+    { name:'Calhanoglu',     price:28 },
+    { name:'Barella',        price:20 },
+    { name:'Lautaro',        price:35 },
   ];
   wins.forEach(w => {
-    const p = S.players.find(x => x.name === w.name);
+    const p = S.players.find(x=>x.name===w.name);
     if (!p) return;
     const savings = p.max - w.price;
-    p.won = w.price; p.max = w.price; p.wonAt = Date.now() + Math.random()*9000;
-    if (savings !== 0) {
-      const pool = S.players.filter(x => x.won === null && !x.skip);
-      spread(savings, pool);
-    }
+    p.won=w.price; p.max=w.price; p.wonAt=Date.now()+Math.random()*9000;
+    if (savings!==0) spread(savings, S.players.filter(x=>x.won===null&&!x.skip));
   });
 
-  // Salta Provedel e Giroud
+  // Saltati
   ['Provedel','Giroud'].forEach(n => {
-    const p = S.players.find(x => x.name === n);
-    if (p) p.skip = true;
+    const p=S.players.find(x=>x.name===n); if(p) p.skip=true;
+  });
+
+  // Riserve (con priorità per ruolo)
+  const reserves = [
+    // Portieri: Provedel è saltato → Carnesecchi in campo
+    { name:'Carnesecchi',  role:'P', order:0 },
+    { name:'Sommer',       role:'P', order:1 },
+    // Difensori: nessun saltato → tutti in panchina
+    { name:'Coppola',      role:'D', order:0 },
+    { name:'Dimarco',      role:'D', order:1 },
+    { name:'Tomori',       role:'D', order:2 },
+    // Centrocampisti: nessun saltato
+    { name:'Adli',         role:'C', order:0 },
+    { name:'De Ketelaere', role:'C', order:1 },
+    // Attaccanti: Giroud è saltato → Retegui in campo
+    { name:'Retegui',      role:'A', order:0 },
+    { name:'Lookman',      role:'A', order:1 },
+    { name:'Castellanos',  role:'A', order:2 },
+  ];
+  reserves.forEach(r => {
+    // base budget stimato per le riserve
+    const basemap = { Carnesecchi:6, Sommer:5, Coppola:4, Dimarco:8, Tomori:5,
+      Adli:5, 'De Ketelaere':8, Retegui:12, Lookman:10, Castellanos:6 };
+    S.reserves.push({ id:uid(), name:r.name, role:r.role,
+      base:basemap[r.name]||5, order:r.order });
   });
 
   save(); render();
 }
 
 function render() {
-  const app = document.getElementById('app');
-  app.innerHTML = S.ready ? renderMain() : renderSetup();
-  if (S.ready) { syncRoles(); syncTog(); }
+  qi('app').innerHTML = S.ready ? renderMain() : renderSetup();
+  if (S.ready) { syncRoles(); syncShToggles(); }
 }
 
 // ── INIT ────────────────────────────────────────────
