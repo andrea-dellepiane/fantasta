@@ -1,0 +1,699 @@
+<title>FantaAsta</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root {
+  --bg: #0a0e17;
+  --surface: #111827;
+  --elevated: #1c2535;
+  --border: #2a3547;
+  --border-sub: #1a2233;
+  --accent: #10d981;
+  --accent-dim: rgba(16,217,129,.12);
+  --text: #f1f5f9;
+  --text-2: #94a3b8;
+  --muted: #64748b;
+  --warn: #f59e0b;
+  --danger: #f43f5e;
+  --rP: #f59e0b; --rD: #3b82f6; --rC: #a855f7; --rA: #f43f5e;
+  --r: 12px; --r-sm: 8px;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f0f4f8; --surface: #fff; --elevated: #f8fafc;
+    --border: #e2e8f0; --border-sub: #f1f5f9;
+    --text: #0f172a; --text-2: #475569; --muted: #94a3b8;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f0f4f8; --surface: #fff; --elevated: #f8fafc;
+  --border: #e2e8f0; --border-sub: #f1f5f9;
+  --text: #0f172a; --text-2: #475569; --muted: #94a3b8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  background:var(--bg); color:var(--text);
+  min-height:100dvh; -webkit-tap-highlight-color:transparent;
+  overscroll-behavior:none;
+}
+.bc{font-family:'Barlow Condensed',sans-serif;letter-spacing:.02em}
+
+/* ── HEADER ── */
+.hdr{
+  position:sticky;top:0;z-index:100;
+  background:var(--surface);border-bottom:1px solid var(--border);
+  padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.hdr-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.06em;line-height:1}
+.hdr-title em{color:var(--accent);font-style:normal}
+.hdr-right{display:flex;gap:8px}
+.ico-btn{
+  width:36px;height:36px;border-radius:var(--r-sm);border:1px solid var(--border);
+  background:var(--elevated);color:var(--text-2);display:flex;align-items:center;
+  justify-content:center;cursor:pointer;font-size:15px;transition:.15s;
+}
+.ico-btn:active{opacity:.7}
+
+/* ── BUDGET STRIP ── */
+.bstrip{
+  display:grid;grid-template-columns:1fr 1px 1fr 1px 1fr;
+  background:var(--border);border-bottom:1px solid var(--border);
+}
+.bstrip-div{background:var(--border)}
+.bcell{
+  background:var(--surface);padding:12px 14px;
+  display:flex;flex-direction:column;gap:2px;
+}
+.bcell-c{align-items:center;text-align:center}
+.bcell-r{align-items:flex-end;text-align:right}
+.blabel{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.bval{
+  font-family:'Barlow Condensed',sans-serif;font-size:30px;font-weight:700;
+  line-height:1;font-variant-numeric:tabular-nums;color:var(--text)
+}
+.bval.acc{color:var(--accent)}
+.bval.wrn{color:var(--warn)}
+.bval.dng{color:var(--danger)}
+.bsub{font-size:11px;color:var(--text-2);font-variant-numeric:tabular-nums}
+
+/* ── PROGRESS BAR ── */
+.pbar-wrap{padding:10px 16px 12px;background:var(--surface);border-bottom:1px solid var(--border)}
+.pbar-track{height:5px;background:var(--elevated);border-radius:3px;display:flex;overflow:hidden}
+.pbar-spent{background:var(--accent);transition:width .4s ease}
+.pbar-proj{background:rgba(16,217,129,.22);transition:width .4s ease}
+.pbar-row{display:flex;justify-content:space-between;align-items:center;margin-top:7px}
+.pbar-info{font-size:11px;color:var(--text-2)}
+.sdge{
+  font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;
+  padding:2px 10px;border-radius:20px;letter-spacing:.02em
+}
+.sdge.pos{background:rgba(16,217,129,.14);color:var(--accent)}
+.sdge.neg{background:rgba(244,63,94,.14);color:var(--danger)}
+.sdge.neu{background:var(--elevated);color:var(--muted)}
+.bwarn{
+  margin:6px 16px 0;padding:8px 12px;border-radius:var(--r-sm);
+  background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);
+  font-size:12px;color:var(--warn);font-weight:500;
+}
+
+/* ── SECTIONS ── */
+.sec{padding:0 16px;margin-top:18px}
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.sec-cnt{
+  font-size:11px;color:var(--muted);background:var(--elevated);
+  padding:2px 8px;border-radius:10px;font-variant-numeric:tabular-nums
+}
+.cards{display:flex;flex-direction:column;gap:8px}
+
+/* ── PLAYER CARD ── */
+.pcard{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r);overflow:hidden;transition:border-color .15s;
+}
+.pcard.won{border-color:rgba(16,217,129,.35);background:linear-gradient(135deg,var(--surface) 0%,rgba(16,217,129,.03) 100%)}
+.pcard.skipped{opacity:.5}
+.card-row{padding:12px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;-webkit-user-select:none;user-select:none}
+.rbadge{
+  width:28px;height:28px;border-radius:6px;display:flex;align-items:center;
+  justify-content:center;font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;font-weight:800;flex-shrink:0;
+}
+.rP{background:rgba(245,158,11,.15);color:var(--rP)}
+.rD{background:rgba(59,130,246,.15);color:var(--rD)}
+.rC{background:rgba(168,85,247,.15);color:var(--rC)}
+.rA{background:rgba(244,63,94,.15);color:var(--rA)}
+.cinfo{flex:1;min-width:0}
+.pname{font-size:15px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
+.pname.struck{text-decoration:line-through;color:var(--text-2)}
+.pmeta{display:flex;align-items:center;gap:5px;margin-top:1px}
+.pmeta-tag{font-size:11px;color:var(--muted)}
+.pmeta-up{font-size:11px;color:var(--accent)}
+.skipped-tag{
+  font-size:10px;background:var(--elevated);color:var(--muted);
+  padding:1px 6px;border-radius:4px;font-weight:600;text-transform:uppercase;letter-spacing:.06em
+}
+.cbud{text-align:right;flex-shrink:0}
+.bmax{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;
+  line-height:1;font-variant-numeric:tabular-nums;color:var(--text)}
+.bmax.up{color:var(--accent)}.bmax.down{color:var(--warn)}
+.bwon-val{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:700;
+  line-height:1;font-variant-numeric:tabular-nums;color:var(--accent)}
+.bsaved{font-size:11px;color:var(--accent);margin-top:1px}
+.blbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.blbl-base{font-size:10px;color:var(--muted)}
+
+/* Card actions */
+.cacts{display:none;flex-direction:row;gap:7px;padding:10px 14px;border-top:1px solid var(--border-sub)}
+.cacts.open{display:flex}
+.btn{
+  flex:1;height:42px;border-radius:var(--r-sm);border:none;
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:600;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;
+  transition:opacity .15s;white-space:nowrap;
+}
+.btn:active{opacity:.75}
+.btn-pri{background:var(--accent);color:#000}
+.btn-sec{background:var(--elevated);color:var(--text-2);border:1px solid var(--border)}
+.btn-dng{background:rgba(244,63,94,.1);color:var(--danger);border:1px solid rgba(244,63,94,.2)}
+.btn-sq{flex:0;width:42px;padding:0}
+
+/* ── FAB ── */
+.fab{
+  position:fixed;bottom:calc(22px + env(safe-area-inset-bottom));right:18px;z-index:200;
+  width:58px;height:58px;border-radius:29px;background:var(--accent);color:#000;border:none;
+  font-size:26px;font-weight:400;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 24px rgba(16,217,129,.45);transition:transform .15s;
+}
+.fab:active{transform:scale(.91)}
+
+/* ── BOTTOM SHEET ── */
+.overlay{
+  display:none;position:fixed;inset:0;z-index:300;
+  background:rgba(0,0,0,.65);backdrop-filter:blur(4px);
+}
+.overlay.open{display:block}
+.sheet{
+  position:fixed;bottom:0;left:0;right:0;z-index:301;
+  background:var(--surface);border-radius:20px 20px 0 0;border-top:1px solid var(--border);
+  padding:0 20px calc(20px + env(safe-area-inset-bottom));
+  transform:translateY(100%);transition:transform .3s cubic-bezier(.32,.72,0,1);
+  max-height:92dvh;overflow-y:auto;
+}
+.sheet.open{transform:translateY(0)}
+.sh-handle{width:36px;height:4px;background:var(--border);border-radius:2px;margin:14px auto 20px}
+.sh-title{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.04em;margin-bottom:20px;color:var(--text)}
+.fld{margin-bottom:16px}
+.flabel{display:block;font-size:11px;font-weight:600;text-transform:uppercase;
+  letter-spacing:.09em;color:var(--muted);margin-bottom:6px}
+.finput{
+  width:100%;height:50px;background:var(--elevated);border:1.5px solid var(--border);
+  border-radius:var(--r-sm);color:var(--text);font-family:'Inter',sans-serif;
+  font-size:16px;padding:0 14px;outline:none;transition:border-color .15s;
+  -webkit-appearance:none;appearance:none;
+}
+.finput:focus{border-color:var(--accent)}
+.finput.big{
+  font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:700;
+  text-align:center;height:72px;font-variant-numeric:tabular-nums;
+}
+.hint{text-align:center;margin-top:6px;font-size:12px;color:var(--muted)}
+.role-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.rbtn{
+  height:46px;border-radius:var(--r-sm);border:2px solid var(--border);
+  background:var(--elevated);color:var(--text-2);
+  font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:800;
+  cursor:pointer;transition:.15s;
+}
+.rbtn.sel-P{border-color:var(--rP);background:rgba(245,158,11,.1);color:var(--rP)}
+.rbtn.sel-D{border-color:var(--rD);background:rgba(59,130,246,.1);color:var(--rD)}
+.rbtn.sel-C{border-color:var(--rC);background:rgba(168,85,247,.1);color:var(--rC)}
+.rbtn.sel-A{border-color:var(--rA);background:rgba(244,63,94,.1);color:var(--rA)}
+.tog-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:13px 0;border-bottom:1px solid var(--border-sub);margin-bottom:16px;
+}
+.tog-lbl{font-size:14px;font-weight:500;color:var(--text)}
+.tog{
+  width:46px;height:26px;border-radius:13px;background:var(--border);
+  position:relative;cursor:pointer;transition:background .2s;border:none;padding:0;flex-shrink:0;
+}
+.tog.on{background:var(--accent)}
+.tog::after{
+  content:'';position:absolute;width:20px;height:20px;border-radius:10px;
+  background:#fff;top:3px;left:3px;transition:transform .2s;
+  box-shadow:0 1px 4px rgba(0,0,0,.35);
+}
+.tog.on::after{transform:translateX(20px)}
+.sh-acts{display:flex;gap:10px;margin-top:20px}
+
+/* ── SETUP ── */
+.setup{
+  min-height:100dvh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:32px 24px;text-align:center;
+}
+.setup-logo{
+  font-family:'Barlow Condensed',sans-serif;font-size:64px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.04em;line-height:.9;margin-bottom:10px;
+}
+.setup-logo em{color:var(--accent);font-style:normal}
+.setup-sub{font-size:14px;color:var(--text-2);margin-bottom:48px}
+.setup-lbl{
+  font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;
+  color:var(--muted);margin-bottom:8px;text-align:left;width:100%;max-width:320px
+}
+.setup-in{
+  width:100%;max-width:320px;height:70px;background:var(--surface);
+  border:2px solid var(--border);border-radius:var(--r);color:var(--text);
+  font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:700;
+  text-align:center;outline:none;transition:border-color .15s;
+  -webkit-appearance:none;font-variant-numeric:tabular-nums;
+}
+.setup-in:focus{border-color:var(--accent)}
+.setup-btn{
+  margin-top:24px;width:100%;max-width:320px;height:58px;border-radius:var(--r);
+  background:var(--accent);color:#000;border:none;
+  font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:opacity .15s;
+}
+.setup-btn:active{opacity:.85}
+.setup-note{margin-top:16px;font-size:12px;color:var(--muted);max-width:280px}
+
+/* ── EMPTY STATE ── */
+.empty{text-align:center;padding:44px 20px;color:var(--muted)}
+.empty-ico{font-size:44px;margin-bottom:12px;opacity:.35}
+.empty-txt{font-size:13px;line-height:1.6}
+
+/* ── SPACER ── */
+.spacer{height:calc(88px + env(safe-area-inset-bottom))}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:calc(84px + env(safe-area-inset-bottom));left:50%;
+  transform:translateX(-50%) translateY(12px);
+  background:var(--elevated);border:1px solid var(--border);color:var(--text);
+  padding:9px 18px;border-radius:20px;font-size:13px;font-weight:500;
+  opacity:0;transition:opacity .22s,transform .22s;pointer-events:none;
+  white-space:nowrap;z-index:500;max-width:calc(100vw - 40px);text-align:center;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (prefers-reduced-motion:reduce){
+  .sheet,.pbar-spent,.pbar-proj,.tog::after,.tog{transition:none}
+}
+</style>
+
+<div id="app"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+const KEY = 'fantaasta-v3';
+
+let S = { totalBudget: 250, ready: false, players: [], xId: null };
+
+// ── PERSIST ─────────────────────────────────────────
+function load() {
+  try { const d = localStorage.getItem(KEY); if (d) S = Object.assign(S, JSON.parse(d)); } catch {}
+}
+function save() { localStorage.setItem(KEY, JSON.stringify(S)); }
+
+// ── COMPUTED ────────────────────────────────────────
+function stats() {
+  const won     = S.players.filter(p => p.won !== null && !p.skip);
+  const pending = S.players.filter(p => p.won === null  && !p.skip);
+  const skipped = S.players.filter(p => p.skip);
+  const spent   = won.reduce((s, p) => s + p.won, 0);
+  const proj    = spent + pending.reduce((s, p) => s + p.max, 0);
+  return { won, pending, skipped, spent, proj,
+    remaining: S.totalBudget - spent,
+    sd: S.totalBudget - proj };
+}
+
+// ── REDISTRIBUTION ──────────────────────────────────
+function spread(savings, pool) {
+  if (!pool.length || savings <= 0) return;
+  const tot = pool.reduce((s, p) => s + p.max, 0);
+  const base = tot > 0 ? tot : 1;
+  let rem = savings;
+  const adds = pool.map(p => {
+    const a = Math.floor(savings * (tot > 0 ? p.max : 1) / (tot > 0 ? base : pool.length));
+    rem -= a; return a;
+  });
+  // remainder → highest max
+  const mi = pool.reduce((mi, p, i) => p.max > pool[mi].max ? i : mi, 0);
+  adds[mi] += rem;
+  pool.forEach((p, i) => { p.max += adds[i]; });
+}
+
+function recalc() {
+  S.players.forEach(p => { if (!p.skip) p.max = p.base; });
+  const wonSorted = S.players.filter(p => p.won !== null && !p.skip)
+    .sort((a, b) => (a.wonAt || 0) - (b.wonAt || 0));
+  const done = new Set();
+  for (const wp of wonSorted) {
+    const savings = wp.max - wp.won;
+    wp.max = wp.won;
+    done.add(wp.id);
+    if (savings > 0) {
+      spread(savings, S.players.filter(p => !done.has(p.id) && !p.skip && p.won === null));
+    }
+  }
+}
+
+// ── ACTIONS ─────────────────────────────────────────
+function addPlayer(name, role, maxB, wonP) {
+  const p = { id: Date.now() + Math.random().toString(36).slice(2),
+    name: name.trim(), role, base: maxB, max: maxB, won: null, wonAt: null, skip: false };
+  S.players.push(p);
+  if (wonP != null) doWin(p.id, wonP, false);
+  else { save(); render(); }
+}
+
+function doWin(id, price, saveRender = true) {
+  const p = S.players.find(x => x.id === id);
+  if (!p) return;
+  const savings = p.max - price;
+  p.won = price; p.max = price; p.wonAt = Date.now();
+  S.xId = null;
+  if (savings > 0) {
+    const pool = S.players.filter(x => x.won === null && !x.skip && x.id !== id);
+    spread(savings, pool);
+    if (pool.length) toast(`+${savings} cr distribuiti su ${pool.length} obiettivi`);
+  }
+  if (saveRender) { save(); render(); }
+}
+
+function doSkip(id) {
+  const p = S.players.find(x => x.id === id);
+  if (p) { p.skip = true; S.xId = null; save(); render(); }
+}
+
+function doUnskip(id) {
+  const p = S.players.find(x => x.id === id);
+  if (p) { p.skip = false; save(); render(); }
+}
+
+function undoWin(id) {
+  const p = S.players.find(x => x.id === id);
+  if (!p) return;
+  p.won = null; p.wonAt = null; S.xId = null;
+  recalc(); save(); render();
+}
+
+function delPlayer(id) {
+  S.players = S.players.filter(x => x.id !== id);
+  if (S.players.some(p => p.won !== null)) recalc();
+  S.xId = null; save(); render();
+}
+
+function toggleX(id) { S.xId = S.xId === id ? null : id; render(); }
+
+// ── SHEETS STATE ────────────────────────────────────
+let shRole = 'A', shAlredy = false, shWonId = null;
+
+function openAdd() {
+  shRole = 'A'; shAlredy = false;
+  qv('sh-name', ''); qv('sh-max', ''); qv('sh-wprice', '');
+  syncRoles(); syncTog();
+  showSheet('sh-add');
+  setTimeout(() => q('#sh-name').focus(), 350);
+}
+
+function openWon(id) {
+  shWonId = id;
+  const p = S.players.find(x => x.id === id);
+  setText('sw-pname', p.name);
+  setText('sw-hint', `max ${p.max} crediti`);
+  qv('sw-price', '');
+  showSheet('sh-won');
+  setTimeout(() => q('#sw-price').focus(), 350);
+}
+
+function showSheet(id) {
+  q('.overlay').classList.add('open');
+  q('#' + id).classList.add('open');
+}
+
+function closeSheets() {
+  q('.overlay').classList.remove('open');
+  qAll('.sheet').forEach(s => s.classList.remove('open'));
+}
+
+function submitAdd() {
+  const name = q('#sh-name').value.trim();
+  const maxB = parseInt(q('#sh-max').value);
+  if (!name) { toast('Inserisci il nome'); return; }
+  if (!maxB || maxB < 1) { toast('Inserisci il budget massimo'); return; }
+  let wonP = null;
+  if (shAlredy) {
+    wonP = parseInt(q('#sh-wprice').value);
+    if (!wonP || wonP < 1) { toast('Inserisci il prezzo pagato'); return; }
+    if (wonP > maxB) { toast(`Prezzo superiore al massimo (${maxB})`); return; }
+  }
+  closeSheets(); addPlayer(name, shRole, maxB, wonP);
+}
+
+function submitWon() {
+  const p = S.players.find(x => x.id === shWonId);
+  const price = parseInt(q('#sw-price').value);
+  if (!price || price < 1) { toast('Inserisci il prezzo'); return; }
+  if (price > p.max) { toast(`Massimo: ${p.max} crediti`); return; }
+  closeSheets(); doWin(shWonId, price);
+}
+
+function selRole(r) { shRole = r; syncRoles(); }
+function togAlready() { shAlredy = !shAlredy; syncTog(); }
+
+function syncRoles() {
+  qAll('.rbtn').forEach(b => {
+    b.className = 'rbtn';
+    if (b.dataset.r === shRole) b.classList.add('sel-' + shRole);
+  });
+}
+function syncTog() {
+  q('#sh-tog').classList.toggle('on', shAlredy);
+  q('#sh-wprow').style.display = shAlredy ? 'block' : 'none';
+}
+
+// ── TOAST ───────────────────────────────────────────
+let toastTimer;
+function toast(msg) {
+  const el = q('#toast'); el.textContent = msg; el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+// ── RENDER ──────────────────────────────────────────
+function q(s) { return document.querySelector(s); }
+function qAll(s) { return document.querySelectorAll(s); }
+function qv(id, v) { const el = document.getElementById(id); if (el) el.value = v; }
+function setText(id, t) { const el = document.getElementById(id); if (el) el.textContent = t; }
+function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function renderSetup() {
+  return `<div class="setup">
+    <div class="setup-logo">Fanta<em>Asta</em></div>
+    <div class="setup-sub">Il tuo assistente per l'asta del fantacalcio</div>
+    <div class="setup-lbl">Budget totale (crediti)</div>
+    <input class="setup-in" type="number" inputmode="numeric" id="sb" value="250" min="1" max="9999"
+      onkeydown="if(event.key==='Enter')go()">
+    <button class="setup-btn" onclick="go()">Inizia l'asta →</button>
+    <div class="setup-note">Standard Leghe: 250 crediti · 25 giocatori (3P 8D 8C 6A)</div>
+  </div>`;
+}
+
+function go() {
+  const v = parseInt(document.getElementById('sb').value);
+  if (!v || v < 1) return;
+  S.totalBudget = v; S.ready = true; save(); render();
+}
+
+function renderCard(p) {
+  const open = S.xId === p.id;
+  const changed = p.max !== p.base && p.won === null;
+  const maxCls = changed ? (p.max > p.base ? 'up' : 'down') : '';
+
+  let budHTML;
+  if (p.won !== null) {
+    const saved = p.base - p.won;
+    budHTML = `<div class="bwon-val">${p.won}</div>
+      <div class="blbl">aggiudicato</div>
+      ${saved > 0 ? `<div class="bsaved">↓${saved} risparmiati</div>` : ''}`;
+  } else {
+    budHTML = `<div class="bmax bc ${maxCls}">${p.max}</div>
+      ${changed
+        ? `<div class="blbl-base">base ${p.base}</div>`
+        : `<div class="blbl">max</div>`}`;
+  }
+
+  let metaHTML = '';
+  if (p.skip) metaHTML = `<span class="skipped-tag">saltato</span>`;
+  else if (changed) metaHTML = `<span class="pmeta-tag">base ${p.base}</span><span class="pmeta-up">↑</span>`;
+
+  let actsHTML = '';
+  if (!p.skip && p.won === null) {
+    actsHTML = `<button class="btn btn-pri" onclick="openWon('${p.id}')">⚡ Aggiudicato</button>
+      <button class="btn btn-sec" onclick="doSkip('${p.id}')">Salta</button>
+      <button class="btn btn-dng btn-sq" onclick="delPlayer('${p.id}')">✕</button>`;
+  } else if (p.won !== null) {
+    actsHTML = `<button class="btn btn-sec" onclick="undoWin('${p.id}')">↩ Annulla</button>
+      <button class="btn btn-dng btn-sq" onclick="delPlayer('${p.id}')">✕</button>`;
+  } else {
+    actsHTML = `<button class="btn btn-sec" onclick="doUnskip('${p.id}')">↩ Ripristina</button>
+      <button class="btn btn-dng btn-sq" onclick="delPlayer('${p.id}')">✕</button>`;
+  }
+
+  return `<div class="pcard ${p.won !== null ? 'won' : ''} ${p.skip ? 'skipped' : ''}">
+    <div class="card-row" onclick="toggleX('${p.id}')">
+      <div class="rbadge r${p.role}">${p.role}</div>
+      <div class="cinfo">
+        <div class="pname ${p.won !== null ? 'struck' : ''}">${esc(p.name)}</div>
+        <div class="pmeta">${metaHTML}</div>
+      </div>
+      <div class="cbud">${budHTML}</div>
+    </div>
+    <div class="cacts ${open ? 'open' : ''}">${actsHTML}</div>
+  </div>`;
+}
+
+function renderMain() {
+  const st = stats();
+  const spPct = Math.min(100, st.spent / S.totalBudget * 100);
+  const prPct = Math.min(100, Math.max(0, (st.proj - st.spent) / S.totalBudget * 100));
+  const sdCls = st.sd > 0 ? 'pos' : st.sd < 0 ? 'neg' : 'neu';
+  const sdTxt = st.sd > 0 ? `+${st.sd} surplus` : st.sd < 0 ? `${st.sd} deficit` : 'in pari';
+  const remCls = st.remaining < 20 ? 'dng' : st.remaining < 50 ? 'wrn' : 'acc';
+  const overBudget = st.proj > S.totalBudget;
+
+  const pendCards = st.pending.map(renderCard).join('');
+  const wonCards  = st.won.map(renderCard).join('');
+  const skipCards = st.skipped.map(renderCard).join('');
+
+  return `
+  <header class="hdr">
+    <div class="hdr-title">Fanta<em>Asta</em></div>
+    <div class="hdr-right">
+      <button class="ico-btn" onclick="resetAll()" title="Reset asta">↺</button>
+    </div>
+  </header>
+
+  <div class="bstrip">
+    <div class="bcell">
+      <div class="blabel">Spesi</div>
+      <div class="bval bc">${st.spent}</div>
+      <div class="bsub">su ${S.totalBudget}</div>
+    </div>
+    <div class="bstrip-div"></div>
+    <div class="bcell bcell-c">
+      <div class="blabel">Rimanenti</div>
+      <div class="bval bc ${remCls}">${st.remaining}</div>
+      <div class="bsub">crediti</div>
+    </div>
+    <div class="bstrip-div"></div>
+    <div class="bcell bcell-r">
+      <div class="blabel">Proiettato</div>
+      <div class="bval bc">${st.proj}</div>
+      <div class="bsub">${st.pending.length} in lista</div>
+    </div>
+  </div>
+
+  <div class="pbar-wrap">
+    <div class="pbar-track">
+      <div class="pbar-spent" style="width:${spPct}%"></div>
+      <div class="pbar-proj" style="width:${prPct}%"></div>
+    </div>
+    <div class="pbar-row">
+      <div class="pbar-info">${Math.round(spPct + prPct)}% del budget impegnato</div>
+      <div class="sdge ${sdCls}">${sdTxt}</div>
+    </div>
+  </div>
+
+  ${overBudget ? `<div class="bwarn">⚠ Stai sforando il budget di ${st.proj - S.totalBudget} crediti</div>` : ''}
+
+  <div class="sec">
+    <div class="sec-hdr">
+      <div class="sec-title">Obiettivi</div>
+      <div class="sec-cnt">${st.pending.length}</div>
+    </div>
+    <div class="cards">
+      ${st.pending.length ? pendCards : `<div class="empty">
+        <div class="empty-ico">🎯</div>
+        <div class="empty-txt">Nessun obiettivo.<br>Usa + per aggiungere giocatori.</div>
+      </div>`}
+    </div>
+  </div>
+
+  ${st.won.length ? `<div class="sec" style="margin-top:24px">
+    <div class="sec-hdr">
+      <div class="sec-title">Aggiudicati</div>
+      <div class="sec-cnt">${st.won.length}</div>
+    </div>
+    <div class="cards">${wonCards}</div>
+  </div>` : ''}
+
+  ${st.skipped.length ? `<div class="sec" style="margin-top:16px;margin-bottom:4px">
+    <div class="sec-hdr">
+      <div class="sec-title" style="color:var(--muted)">Saltati</div>
+      <div class="sec-cnt">${st.skipped.length}</div>
+    </div>
+    <div class="cards">${skipCards}</div>
+  </div>` : ''}
+
+  <div class="spacer"></div>
+  <button class="fab" onclick="openAdd()">+</button>
+
+  <div class="overlay" onclick="closeSheets()"></div>
+
+  <!-- Add sheet -->
+  <div class="sheet" id="sh-add" onclick="event.stopPropagation()">
+    <div class="sh-handle"></div>
+    <div class="sh-title">Aggiungi giocatore</div>
+    <div class="fld">
+      <div class="flabel">Ruolo</div>
+      <div class="role-grid">
+        ${['P','D','C','A'].map(r=>`<button class="rbtn" data-r="${r}" onclick="selRole('${r}')">${r}</button>`).join('')}
+      </div>
+    </div>
+    <div class="fld">
+      <label class="flabel" for="sh-name">Nome</label>
+      <input class="finput" type="text" id="sh-name" placeholder="es. Calhanoglu"
+        autocomplete="off" autocorrect="off" autocapitalize="words" spellcheck="false">
+    </div>
+    <div class="fld">
+      <label class="flabel" for="sh-max">Budget massimo</label>
+      <input class="finput" type="number" inputmode="numeric" id="sh-max" placeholder="es. 30">
+    </div>
+    <div class="tog-row">
+      <div class="tog-lbl">Già aggiudicato</div>
+      <button class="tog" id="sh-tog" onclick="togAlready()"></button>
+    </div>
+    <div class="fld" id="sh-wprow" style="display:none">
+      <label class="flabel" for="sh-wprice">Prezzo pagato</label>
+      <input class="finput" type="number" inputmode="numeric" id="sh-wprice" placeholder="es. 25">
+    </div>
+    <div class="sh-acts">
+      <button class="btn btn-sec" style="flex:0;min-width:90px" onclick="closeSheets()">Annulla</button>
+      <button class="btn btn-pri" onclick="submitAdd()">Aggiungi</button>
+    </div>
+  </div>
+
+  <!-- Won sheet -->
+  <div class="sheet" id="sh-won" onclick="event.stopPropagation()">
+    <div class="sh-handle"></div>
+    <div class="sh-title">⚡ Aggiudicato!</div>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;
+      color:var(--text-2);margin-bottom:20px;letter-spacing:.02em" id="sw-pname"></div>
+    <div class="fld">
+      <div class="flabel">Prezzo pagato</div>
+      <input class="finput big" type="number" inputmode="numeric" id="sw-price"
+        placeholder="0" onkeydown="if(event.key==='Enter')submitWon()">
+      <div class="hint" id="sw-hint"></div>
+    </div>
+    <div class="sh-acts">
+      <button class="btn btn-sec" style="flex:0;min-width:90px" onclick="closeSheets()">Annulla</button>
+      <button class="btn btn-pri" onclick="submitWon()">Conferma</button>
+    </div>
+  </div>`;
+}
+
+function resetAll() {
+  if (!confirm('Resettare tutta l\'asta? I dati verranno eliminati.')) return;
+  localStorage.removeItem(KEY);
+  S = { totalBudget: 250, ready: false, players: [], xId: null };
+  render();
+}
+
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML = S.ready ? renderMain() : renderSetup();
+  if (S.ready) { syncRoles(); syncTog(); }
+}
+
+// ── INIT ────────────────────────────────────────────
+load();
+render();
+</script>
