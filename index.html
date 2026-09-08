@@ -557,6 +557,7 @@ function renderMain() {
   <header class="hdr">
     <div class="hdr-title">Fanta<em>Asta</em></div>
     <div class="hdr-right">
+      <button class="ico-btn" onclick="populateTest()" title="Popola dati di test" style="font-size:13px;font-weight:600;width:auto;padding:0 10px;color:var(--accent);border-color:rgba(16,217,129,.3)">TEST</button>
       <button class="ico-btn" onclick="resetAll()" title="Reset asta">↺</button>
     </div>
   </header>
@@ -685,6 +686,52 @@ function resetAll() {
   localStorage.removeItem(KEY);
   S = { totalBudget: 250, ready: false, players: [], xId: null };
   render();
+}
+
+function populateTest() {
+  const players = [
+    { name:'Provedel',   role:'P', base:15 },
+    { name:'Maignan',    role:'P', base:25 },
+    { name:'Di Lorenzo', role:'D', base:22 },
+    { name:'Theo',       role:'D', base:30 },
+    { name:'Bastoni',    role:'D', base:18 },
+    { name:'Dumfries',   role:'D', base:20 },
+    { name:'Calhanoglu', role:'C', base:35 },
+    { name:'Lobotka',    role:'C', base:20 },
+    { name:'Barella',    role:'C', base:28 },
+    { name:'Loftus-Cheek',role:'C',base:16 },
+    { name:'Vlahovic',   role:'A', base:40 },
+    { name:'Lautaro',    role:'A', base:45 },
+    { name:'Osimhen',    role:'A', base:38 },
+  ];
+  S.ready = true; S.totalBudget = 250; S.players = []; S.xId = null;
+  // add all as pending first
+  players.forEach(p => {
+    S.players.push({ id: Date.now() + Math.random().toString(36).slice(2),
+      name: p.name, role: p.role, base: p.base, max: p.base,
+      won: null, wonAt: null, skip: false });
+  });
+  // win 4 of them at various prices
+  const wins = [
+    { name:'Maignan',    price:20 },
+    { name:'Theo',       price:25 },
+    { name:'Calhanoglu', price:35 },
+    { name:'Lautaro',    price:48 },
+  ];
+  wins.forEach(w => {
+    const p = S.players.find(x => x.name === w.name);
+    if (!p) return;
+    const savings = p.max - w.price;
+    p.won = w.price; p.max = w.price; p.wonAt = Date.now() + Math.random() * 1000;
+    if (savings > 0) {
+      const pool = S.players.filter(x => x.won === null && !x.skip);
+      spread(savings, pool);
+    }
+  });
+  // skip one
+  const skip = S.players.find(x => x.name === 'Provedel');
+  if (skip) skip.skip = true;
+  save(); render();
 }
 
 function render() {
