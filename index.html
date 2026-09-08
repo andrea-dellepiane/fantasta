@@ -333,6 +333,17 @@ function addReserve(name, role, base) {
   save(); render();
 }
 
+function promoteReserve(id) {
+  const r = S.reserves.find(x => x.id === id);
+  if (!r) return;
+  S.reserves = S.reserves.filter(x => x.id !== id);
+  S.reserves.filter(x => x.role === r.role).sort((a,b) => a.order - b.order)
+    .forEach((x,i) => { x.order = i; });
+  S.players.push({ id:uid(), name:r.name, role:r.role, base:r.base, max:r.base,
+    won:null, wonAt:null, skip:false });
+  save(); render();
+}
+
 function delReserve(id) {
   const r = S.reserves.find(x=>x.id===id);
   if (!r) return;
@@ -614,15 +625,22 @@ function getIncampo() {
 }
 
 function renderSubCard(r) {
-  return `<div class="sub-card">
-    <div class="rbadge r${r.role}">${r.role}</div>
-    <div class="cinfo">
-      <div class="pname">${esc(r.name)}</div>
-      <div class="pmeta"><span class="sub-badge">riserva in campo</span></div>
+  const open = S.xId === 'sub-' + r.id;
+  return `<div class="pcard" style="border:1.5px dashed rgba(245,158,11,.5)">
+    <div class="card-row" onclick="toggleX('sub-${r.id}')">
+      <div class="rbadge r${r.role}">${r.role}</div>
+      <div class="cinfo">
+        <div class="pname">${esc(r.name)}</div>
+        <div class="pmeta"><span class="sub-badge">riserva in campo</span></div>
+      </div>
+      <div class="cbud">
+        <div class="sub-bud">${r.base}</div>
+        <div class="sub-lbl">budget</div>
+      </div>
     </div>
-    <div class="cbud">
-      <div class="sub-bud">${r.base}</div>
-      <div class="sub-lbl">budget</div>
+    <div class="cacts ${open ? 'open' : ''}">
+      <button class="btn btn-pri" onclick="promoteReserve('${r.id}')">⬆ Promuovi a obiettivo</button>
+      <button class="btn btn-dng btn-sq" onclick="delReserve('${r.id}')">✕</button>
     </div>
   </div>`;
 }
